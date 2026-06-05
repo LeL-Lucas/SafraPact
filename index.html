@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafraPact | Gestão de Contratos Agrícolas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css?v=20260605-3">
+    <link rel="stylesheet" href="css/components.css?v=20260605-3">
+</head>
+<body>
+
+<header class="premium-header">
+    <div class="nav-container">
+        <div class="logo-box">
+            <img src="img/logo-fundo-branco.png" alt="SafraPact Logo" id="main-logo" class="logo-img">
+        </div>
+        
+        <button class="menu-toggle" id="mobile-menu" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav id="nav-list" class="nav-wrapper">
+            <ul class="nav-menu">
+                <li id="menu-item-mural"><a href="propostas.html">Mural de Propostas</a></li>
+                <li><a href="#como-funciona-anchor">Como Funciona</a></li>
+                <li><a href="javascript:void(0)" id="nav-prazos">Garantia de Prazos</a></li>
+            </ul>
+            <div class="header-buttons">
+                <button id="theme-toggle" class="btn-theme" aria-label="Alternar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn-link" id="nav-login">Login</button>
+                <button class="btn-primary btn-nav" id="nav-cadastro">Criar Conta</button>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="hero-premium">
+        <div class="hero-container-center">
+            <h1>Gestão de serviços para <br><span id="typewriter-text" class="text-dynamic"></span><span class="cursor">|</span></h1>
+            <p>A plataforma que conecta as demandas operacionais de produtores rurais à capacidade de execução de empresas do agronegócio, com segurança jurídica e pagamentos garantidos por conta de retenção.</p>
+            <div class="hero-actions">
+                <button class="btn-primary btn-large" id="hero-publicar">Publicar Nova Demanda</button>
+                <a href="propostas.html" class="btn-secondary btn-large" id="hero-explorar">Explorar Oportunidades</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contracts-section" id="secao-demandas-home">
+        <div class="section-container-header">
+            <div class="section-title-block">
+                <h2>Propostas Disponíveis</h2>
+                <p>Oportunidades de serviços abertas para recebimento de propostas comerciais.</p>
+            </div>
+            <div class="counter-badge-premium">
+                <span>3</span> contratos listados
+            </div>
+        </div>
+        
+        <div class="contracts-grid">
+            <div class="contract-card">
+                <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&q=80&w=600" alt="Colheita" class="contract-img">
+                <div class="contract-body">
+                    <div class="card-tags">
+                        <span class="status-tag">Colheita</span>
+                        <span class="loc-text"><i class="fas fa-map-marker-alt"></i> Sorriso, MT</span>
+                    </div>
+                    <h3>Operação Logística e Colheita Mecanizada de Soja</h3>
+                    <div class="metrics-grid">
+                        <div class="metric"><span>Tamanho da Área</span><strong>1.200 ha</strong></div>
+                        <div class="metric"><span>Janela Trabalho</span><strong>Fev/2027 a Mar/2027</strong></div>
+                    </div>
+                    <button class="btn-secondary btn-block btn-detalhes" data-id="1">Ver Detalhes</button>
+                </div>
+            </div>
+
+            <div class="contract-card">
+                <img src="https://images.unsplash.com/photo-1586771107445-d3af9e701c09?auto=format&fit=crop&q=80&w=600" alt="Pulverização" class="contract-img">
+                <div class="contract-body">
+                    <div class="card-tags">
+                        <span class="status-tag">Pulverização</span>
+                        <span class="loc-text"><i class="fas fa-map-marker-alt"></i> Rio Verde, GO</span>
+                    </div>
+                    <h3>Pulverização Automatizada de Precisão - Safra Verão</h3>
+                    <div class="metrics-grid">
+                        <div class="metric"><span>Tamanho da Área</span><strong>850 ha</strong></div>
+                        <div class="metric"><span>Janela Trabalho</span><strong>Dez/2026 a Jan/2027</strong></div>
+                    </div>
+                    <button class="btn-secondary btn-block btn-detalhes" data-id="2">Ver Detalhes</button>
+                </div>
+            </div>
+
+            <div class="contract-card">
+                <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&q=80&w=600" alt="Plantio" class="contract-img">
+                <div class="contract-body">
+                    <div class="card-tags">
+                        <span class="status-tag">Plantio</span>
+                        <span class="loc-text"><i class="fas fa-map-marker-alt"></i> Luís Eduardo, BA</span>
+                    </div>
+                    <h3>Manejo e Plantio de Lavouras de Algodão</h3>
+                    <div class="metrics-grid">
+                        <div class="metric"><span>Tamanho da Área</span><strong>2.000 ha</strong></div>
+                        <div class="metric"><span>Janela Trabalho</span><strong>Nov/2026 a Dez/2026</strong></div>
+                    </div>
+                    <button class="btn-secondary btn-block btn-detalhes" data-id="3">Ver Detalhes</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works-section" id="como-funciona-anchor">
+        <div class="how-container">
+            <h2>Como Funciona a SafraPact</h2>
+            <div class="how-grid">
+                <div class="how-step">
+                    <div class="step-num">1</div>
+                    <h3>Publique a Demanda</h3>
+                    <p>O produtor rural detalha a área, a cultura e a janela exata que precisa do maquinário ou da equipe.</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-num">2</div>
+                    <h3>Análise de Propostas</h3>
+                    <p>Empresas prestadoras qualificadas analisam a demanda e enviam propostas comerciais estruturadas.</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-num">3</div>
+                    <h3>Contrato Seguro</h3>
+                    <p>Intermediamos a relação com contratos jurídicos claros e retenção financeira de segurança para ambas as partes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="modal-overlay" id="modalLoginOverlay">
+    <div class="modal-card">
+        <button class="close-btn" id="close-login"><i class="fas fa-times"></i></button>
+        <div class="modal-head">
+            <h2>Acessar Conta</h2>
+            <p class="modal-subtitle">Entre com seus dados para gerenciar seus contratos</p>
+        </div>
+        <div class="modal-body">
+            <div id="login-error-msg" class="login-alert" style="display: none;"></div>
+            <div class="input-group">
+                <label>E-mail Corporativo</label>
+                <input type="email" id="login-email" placeholder="nome@empresa.com.br" class="premium-input">
+            </div>
+            <div class="input-group">
+                <label>Senha de Acesso</label>
+                <input type="password" id="login-senha" placeholder="Digite sua senha" class="premium-input">
+            </div>
+            <button class="btn-primary btn-block" id="btn-efetuar-login" style="margin-top: 10px;">Entrar na Plataforma</button>
+            <div class="login-footer-links">
+                <a href="javascript:void(0)" id="link-mudar-cadastro">Não tenho conta</a>
+                <a href="#">Esqueci minha senha</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalRegisterOverlay">
+    <div class="modal-card">
+        <button class="close-btn" id="close-cadastro"><i class="fas fa-times"></i></button>
+        <div class="modal-head">
+            <h2>Criar nova conta</h2>
+            <p class="modal-subtitle">Selecione o seu perfil de atuação na plataforma</p>
+        </div>
+        <div class="modal-body select-profile-body">
+            <button class="profile-option-btn">
+                <div class="profile-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <div class="profile-desc">
+                    <strong>Sou Produtor Rural</strong>
+                    <span>Quero publicar minhas demandas e contratar empresas qualificadas.</span>
+                </div>
+            </button>
+            <button class="profile-option-btn">
+                <div class="profile-icon"><i class="fas fa-tractor"></i></div>
+                <div class="profile-desc">
+                    <strong>Sou Empresa / Prestador</strong>
+                    <span>Possuo maquinário ou equipes e quero enviar propostas para os contratos.</span>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalPrazosOverlay">
+    <div class="modal-card">
+        <button class="close-btn" id="close-prazos"><i class="fas fa-times"></i></button>
+        <div class="modal-head">
+            <h2>Política de Alinhamento de Prazos</h2>
+            <p class="modal-subtitle">Como asseguramos as tratativas contratuais</p>
+        </div>
+        <div class="modal-body text-modal-body">
+            <p>A SafraPact atua como uma plataforma de infraestrutura e intermediação de negócios, aplicando termos jurídicos rígidos, análises cadastrais de CNPJ e contas de garantia com retenção de valores para mitigar quebras contratuais.</p>
+            <p>Contudo, devido à natureza variável das operações agrícolas (fatores climáticos adversos, quebras mecânicas imprevisíveis ou bloqueios logísticos regionais), <strong>não é possível assegurar 100% o cumprimento físico ou pontualidade das janelas estipuladas nos contratos</strong>.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary btn-block" id="btn-entendi-prazos">Compreendo os Termos</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+        <button class="close-btn" id="close-detalhes"><i class="fas fa-times"></i></button>
+        <div class="modal-head">
+            <span class="status-tag success">Recebendo Propostas</span>
+            <h2 id="modalNome">Título do Contrato</h2>
+            <p id="modalCargo" class="modal-subtitle"><i class="fas fa-map-marker-alt"></i> Localidade</p>
+        </div>
+        <div class="modal-body">
+            <div class="info-block">
+                <small>Tamanho da Área</small>
+                <strong id="modalExp">0 hectares</strong>
+            </div>
+            <div class="info-block">
+                <small>Janela de Trabalho</small>
+                <strong id="modalEsp">Data</strong>
+            </div>
+            <div class="info-block">
+                <small>Garantia Financeira</small>
+                <strong>Retido em Segurança</strong>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-primary btn-block">Enviar Proposta Comercial</button>
+        </div>
+    </div>
+</div>
+
+<div id="bloco-aviso-produtor-home" style="display: none; max-width: 1280px; margin: 40px auto; padding: 0 24px;">
+    <div style="padding: 50px; text-align: center; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow-sm);">
+        <i class="fas fa-user-shield" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+        <h3 style="margin-bottom: 8px;">Painel do Produtor Rural Ativo</h3>
+        <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 0.95rem; line-height: 1.5;">Utilize as ferramentas administrativas do seu painel logístico seguro para cadastrar propriedades e publicar novas demandas operacionais para o ecossistema.</p>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2026 SafraPact Corp - Infraestrutura de Serviços B2B. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="js/config.js?v=20260605-3"></script>
+<script src="js/safrapact-store.js?v=20260605-3"></script>
+<script src="js/script.js?v=20260605-3"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafraPact | Meu Perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css?v=20260605-3">
+    <link rel="stylesheet" href="css/components.css?v=20260605-3">
+    <link rel="stylesheet" href="css/perfil.css">
+</head>
+<body>
+<header class="premium-header">
+    <div class="nav-container">
+        <div class="logo-box"><a href="index.html"><img src="img/logo-fundo-branco.png" alt="SafraPact Logo" id="main-logo" class="logo-img"></a></div>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        <nav id="nav-list" class="nav-wrapper">
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li id="menu-item-mural"><a href="propostas.html">Mural de Propostas</a></li>
+            </ul>
+            <div class="header-buttons">
+                <button id="theme-toggle" class="btn-theme" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+                <button class="btn-link" id="nav-usuario">Usuário</button>
+                <button class="btn-primary btn-nav" id="btn-sair">Sair</button>
+            </div>
+        </nav>
+    </div>
+</header>
+<main class="profile-page">
+    <section class="profile-card">
+        <div class="profile-icon-large"><i class="fas fa-user-shield"></i></div>
+        <p class="profile-eyebrow">Conta autenticada</p>
+        <h1 id="perfil-nome">Usuário SafraPact</h1>
+        <p id="perfil-tipo" class="profile-role"></p>
+        <div class="profile-data"><span>E-mail corporativo</span><strong id="perfil-email"></strong></div>
+        <div class="profile-actions" id="perfil-actions"></div>
+    </section>
+</main>
+<script src="js/config.js?v=20260605-3"></script>
+<script src="js/safrapact-store.js?v=20260605-3"></script>
+<script src="js/perfil.js?v=20260605-3"></script>
+</body>
+</html>

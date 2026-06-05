@@ -1,0 +1,234 @@
+:root {
+    --primary: #2b8a22;       
+    --primary-dark: #1e6317;
+    --primary-light: #eaf5ea;
+    --text-main: #2d3436;     
+    --text-muted: #636e72;
+    --bg-page: #f5f7f5;       
+    --bg-card: #ffffff;
+    --border: #e2e8f0;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 16px 36px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+    --primary: #32a828;
+    --primary-dark: #237a1c;
+    --primary-light: #162915;
+    --text-main: #f1f2f6;     
+    --text-muted: #a4b0be;
+    --bg-page: #0f1110;       
+    --bg-card: #161a17;       
+    --border: #262c28;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    transition: background-color 0.2s, color 0.2s;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- HEADER FIXO --- */
+.premium-header { background: var(--bg-card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; height: 95px; display: flex; align-items: center; }
+.nav-container { width: 100%; max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; }
+.logo-img { height: 70px !important; width: auto !important; object-fit: contain; }
+.nav-wrapper { display: flex; align-items: center; gap: 40px; }
+.nav-menu { display: flex; list-style: none; gap: 32px; align-items: center; margin: 0; padding: 0;}
+.nav-menu a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s;}
+.nav-menu a:hover { color: var(--text-main); }
+.header-buttons { display: flex; align-items: center; gap: 16px; }
+
+/* --- BOTÕES --- */
+.btn-primary { background: var(--primary); color: #fff; border: none; padding: 11px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border); padding: 11px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; box-shadow: var(--shadow-sm); }
+.btn-secondary:hover { background-color: var(--bg-page); }
+.btn-link { background: transparent; border: none; color: var(--text-muted); font-family: inherit; font-weight: 600; font-size: 0.9rem; padding: 8px 12px; cursor: pointer; }
+.btn-link:hover { color: var(--text-main); }
+.btn-block { width: 100%; padding: 14px; border-radius: 6px; font-size: 0.95rem; border: 1px solid var(--border); }
+.btn-theme { background: transparent; border: 1px solid var(--border); color: var(--text-main); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; }
+
+/* --- MAPA SVG INTERATIVO: SOMENTE ESTADOS BRASILEIROS --- */
+.map-dashboard-section { max-width: 1280px; margin: 40px auto 20px; padding: 0 24px; }
+.map-card-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; box-shadow: var(--shadow-sm); }
+.map-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.map-panel-header h2 { font-size: 1.25rem; font-weight: 700; }
+.region-status-badge { background: var(--bg-page); border: 1px solid var(--border); padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.9rem; color: var(--primary); }
+
+.map-render-wrapper {
+    width: 100%;
+    min-height: 500px;
+    background: var(--bg-page);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow: hidden;
+}
+
+.brazil-map-container {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brazil-svg-map {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    overflow: visible;
+}
+
+/* Regiões do mapa */
+.brazil-svg-map .state {
+    fill: #dce8dd;
+    stroke: #ffffff;
+    stroke-width: 0.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: fill 0.18s ease, filter 0.18s ease, transform 0.18s ease;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.brazil-svg-map .state[id] {
+    cursor: pointer;
+}
+
+.brazil-svg-map .state[id]:hover,
+.brazil-svg-map .state[id]:focus {
+    fill: #8ce986;
+    filter: drop-shadow(0 4px 5px rgba(43, 138, 34, 0.32));
+    outline: none;
+}
+
+.brazil-svg-map .state[id].state-selected {
+    fill: var(--primary);
+    filter: drop-shadow(0 5px 7px rgba(43, 138, 34, 0.42));
+}
+
+[data-theme="dark"] .brazil-svg-map .state {
+    fill: #26412a;
+    stroke: #101612;
+}
+
+[data-theme="dark"] .brazil-svg-map .state[id]:hover,
+[data-theme="dark"] .brazil-svg-map .state[id]:focus {
+    fill: #66c85e;
+}
+
+[data-theme="dark"] .brazil-svg-map .state[id].state-selected {
+    fill: var(--primary);
+}
+
+/* --- MURAL GERAL --- */
+.mural-general-section { max-width: 1280px; margin: 40px auto 40px; padding: 0 24px; }
+.mural-section-header { margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+.mural-section-header h2 { font-size: 1.5rem; font-weight: 800; }
+.mural-section-header p { color: var(--text-muted); font-size: 0.95rem; margin-top: 4px; }
+
+.contracts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 30px; }
+.contract-card { background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: transform 0.2s; }
+.contract-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+.contract-img { width: 100%; height: 180px; object-fit: cover; }
+.contract-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+.card-tags { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.status-tag { font-size: 0.7rem; font-weight: 700; padding: 5px 10px; border-radius: 4px; text-transform: uppercase; background: var(--primary-light); color: var(--primary-dark); }
+.loc-text { font-size: 0.85rem; color: var(--text-muted); }
+.contract-body h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; }
+.metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.metric { display: flex; flex-direction: column; }
+.metric span { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+.metric strong { font-size: 0.95rem; margin-top: 4px; font-weight: 700; }
+
+/* --- MODAIS DE COMPORTAMENTO SEGURO --- */
+.modal-overlay { 
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); 
+    z-index: 3000; align-items: center; justify-content: center; 
+}
+.modal-card { background: var(--bg-card); width: 90%; max-width: 480px; border-radius: 16px; padding: 36px; position: relative; border: 1px solid var(--border); }
+.close-btn { position: absolute; top: 20px; right: 20px; background: var(--bg-page); border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; }
+.modal-head { margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+.modal-head h2 { font-size: 1.5rem; font-weight: 800; }
+.modal-subtitle { color: var(--text-muted); font-size: 0.9rem; }
+.modal-body { display: flex; flex-direction: column; gap: 16px; }
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.premium-input { width: 100%; padding: 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg-page); color: var(--text-main); outline: none; }
+.login-footer-links { display: flex; justify-content: space-between; font-size: 0.85rem; }
+.login-footer-links a { color: var(--primary); text-decoration: none; font-weight: 600; }
+.text-modal-body p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
+.info-block { display: flex; justify-content: space-between; align-items: center; padding: 14px; background: var(--bg-page); border-radius: 8px; border: 1px solid var(--border); }
+.info-block small { color: var(--text-muted); font-weight: 600; }
+
+.select-profile-body { gap: 14px; }
+.profile-option-btn { width: 100%; display: flex; align-items: center; gap: 18px; padding: 18px; background: var(--bg-page); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; text-align: left; font-family: inherit;}
+.profile-icon { width: 44px; height: 44px; background: var(--bg-card); border: 1px solid var(--border); color: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.profile-desc { display: flex; flex-direction: column; }
+.profile-desc strong { font-size: 0.95rem; }
+.profile-desc span { color: var(--text-muted); font-size: 0.8rem; }
+
+footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 30px; text-align: center; font-size: 0.85rem; color: var(--text-muted); width: 100%; margin-top: auto; }
+
+.menu-toggle { display: none; }
+
+@media (max-width: 768px) {
+    .menu-toggle { display: block; border: none; background: transparent; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
+    .nav-wrapper { display: none; position: absolute; top: 95px; left: 0; width: 100%; background: var(--bg-card); padding: 24px; flex-direction: column; gap: 24px; border-bottom: 1px solid var(--border); }
+    .nav-wrapper.active { display: flex; }
+    .nav-menu { flex-direction: column; gap: 16px; width: 100%; }
+    .header-buttons { flex-direction: column; width: 100%; gap: 12px; }
+    .contracts-grid { grid-template-columns: 1fr; }
+}
+
+/* Ajustes responsivos do mapa SVG */
+@media (max-width: 768px) {
+    .map-render-wrapper {
+        min-height: 360px;
+        padding: 14px;
+    }
+
+    .brazil-map-container {
+        max-width: 430px;
+    }
+
+    .region-status-badge {
+        margin-left: 12px;
+        text-align: right;
+    }
+}
+
+/* --- ESTILO ADICIONADO PARA CAIXA DE ALERTA DE LOGIN --- */
+.login-alert {
+    background-color: #ffeaa7;
+    border: 1px solid #fdcb6e;
+    color: #d63031;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 8px;
+    animation: shakeValidacao 0.4s ease;
+}
+
+@keyframes shakeValidacao {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+/* Bloqueia a consulta direta ao mural antes da autenticação de um prestador. */
+.propostas-locked main,
+.propostas-locked footer { filter: blur(3px); pointer-events: none; user-select: none; }

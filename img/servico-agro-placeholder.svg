@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <rect width="800" height="400" fill="#eaf5ea"/>
+  <path d="M0 310 C120 240 240 350 360 285 C500 210 650 320 800 245 L800 400 L0 400 Z" fill="#cfe8cf"/>
+  <path d="M0 350 C170 270 280 385 440 315 C590 250 710 335 800 295" fill="none" stroke="#73b56d" stroke-width="10"/>
+  <circle cx="660" cy="95" r="42" fill="#f2c96d"/>
+  <path d="M210 260 L210 145 L330 92 L450 145 L450 260 Z" fill="#ffffff" stroke="#2b8a22" stroke-width="12"/>
+  <path d="M190 150 L330 70 L470 150" fill="none" stroke="#1e6317" stroke-width="16" stroke-linejoin="round"/>
+  <rect x="285" y="185" width="90" height="75" fill="#dcefdc" stroke="#2b8a22" stroke-width="10"/>
+  <text x="400" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="700" fill="#1e6317">Serviço Agro</text>
+</svg>
