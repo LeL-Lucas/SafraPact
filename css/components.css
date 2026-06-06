@@ -120,3 +120,11 @@
   .about-grid { grid-template-columns: 1fr; }
   .pending-item-actions { width: 100%; flex-wrap: wrap; }
 }
+
+/* --- Correções v6: fechamento acessível do modal de detalhes --- */
+.detail-modal-card { max-height: 92vh; overflow-y: auto; }
+.detail-modal-card > .close-btn { position: sticky; top: 0; float: right; margin-top: -8px; margin-right: -8px; z-index: 12; flex-shrink: 0; }
+.details-modal-footer { display: grid; grid-template-columns: minmax(120px, .6fr) minmax(180px, 1fr); gap: 10px; }
+@media (max-width: 560px) {
+  .details-modal-footer { grid-template-columns: 1fr; }
+}

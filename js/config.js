@@ -9,5 +9,5 @@
 window.SAFRAPACT_CONFIG = {
     databaseURL: "https://safrapact-default-rtdb.firebaseio.com",
     pollIntervalMs: 5000,
-    googleMapsApiKey: "AIzaSyCTcV-mSOrc-dLAGDqzSMpAGtrUDVUD3U8"
+    googleMapsApiKey: "AIzaSyBC9rzZVquhboabq2K9AaQ197__y8D-3mc"
 };

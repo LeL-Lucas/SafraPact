@@ -40,8 +40,12 @@ function configurarModaisBase() {
     document.getElementById("close-prazos")?.addEventListener("click", () => fecharModal("modalPrazosOverlay"));
     document.getElementById("btn-entendi-prazos")?.addEventListener("click", () => fecharModal("modalPrazosOverlay"));
     document.getElementById("close-detalhes")?.addEventListener("click", () => fecharModal("modalOverlay"));
+    document.getElementById("btn-fechar-detalhes")?.addEventListener("click", () => fecharModal("modalOverlay"));
     window.addEventListener("click", event => {
         ["modalLoginOverlay", "modalRegisterOverlay", "modalPrazosOverlay", "modalOverlay"].forEach(id => { const modal = document.getElementById(id); if (event.target === modal) fecharModal(id); });
+    });
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") ["modalLoginOverlay", "modalRegisterOverlay", "modalPrazosOverlay", "modalOverlay"].forEach(fecharModal);
     });
 }
 
