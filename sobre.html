@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafraPact | Sobre nós</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css?v=20260605-5">
+    <link rel="stylesheet" href="css/components.css?v=20260605-5">
+</head>
+<body>
+<header class="premium-header">
+    <div class="nav-container">
+        <div class="logo-box"><a href="index.html"><img src="img/logo-fundo-branco.png" alt="SafraPact Logo" id="main-logo" class="logo-img"></a></div>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        <nav id="nav-list" class="nav-wrapper">
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li id="menu-item-mural"><a href="propostas.html">Mural de Propostas</a></li>
+                <li><a href="index.html#como-funciona-anchor">Como funciona</a></li>
+                <li><a href="sobre.html">Sobre nós</a></li>
+            </ul>
+            <div class="header-buttons">
+                <button id="theme-toggle" class="btn-theme" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
+                <button class="btn-link" id="nav-login" onclick="window.location.href='index.html'">Login</button>
+                <button class="btn-primary btn-nav" id="nav-cadastro" onclick="window.location.href='index.html'">Criar Conta</button>
+            </div>
+        </nav>
+    </div>
+</header>
+<main class="about-page">
+    <section class="about-hero">
+        <p class="modal-kicker"><i class="fas fa-seedling"></i> Sobre a SafraPact</p>
+        <h1>Serviços rurais conectados com mais clareza e agilidade.</h1>
+        <p>A SafraPact aproxima produtores rurais e empresas prestadoras de serviços agrícolas. A plataforma organiza demandas, facilita a descoberta de oportunidades e oferece uma visão mais clara das condições de cada trabalho.</p>
+    </section>
+    <section class="about-grid">
+        <article class="about-card"><i class="fas fa-tractor"></i><h2>Conexão prática</h2><p>Produtores publicam necessidades operacionais e prestadores encontram serviços compatíveis com sua estrutura.</p></article>
+        <article class="about-card"><i class="fas fa-map-location-dot"></i><h2>Visão regional</h2><p>O mural interativo permite consultar oportunidades por estado, serviço, cultura e localização da propriedade.</p></article>
+        <article class="about-card"><i class="fas fa-file-shield"></i><h2>Mais organização</h2><p>As informações essenciais ficam registradas em um único ambiente para apoiar negociações mais objetivas.</p></article>
+    </section>
+    <section class="about-story">
+        <h2>Nosso propósito</h2>
+        <p>O agronegócio depende de decisões rápidas e de uma boa coordenação entre quem precisa executar um serviço e quem possui máquinas, equipes e experiência para realizá-lo. A SafraPact foi criada como um protótipo de plataforma digital para reduzir essa distância e demonstrar como a tecnologia pode tornar esse processo mais simples.</p>
+    </section>
+</main>
+<footer><div class="footer-content"><p>&copy; 2026 SafraPact Corp - Infraestrutura de Serviços B2B. Todos os direitos reservados.</p></div></footer>
+<script src="js/config.js?v=20260605-5"></script>
+<script src="js/safrapact-store.js?v=20260605-5"></script>
+<script>document.addEventListener('DOMContentLoaded', () => SafraPact.initCommon());</script>
+</body>
+</html>

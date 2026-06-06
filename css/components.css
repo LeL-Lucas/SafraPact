@@ -60,3 +60,63 @@
   .pending-item { align-items: flex-start; flex-direction: column; }
   .modal-card-large { padding: 26px 20px !important; }
 }
+
+/* --- Finalização visual v4 --- */
+.floating-actions { position: fixed; right: 20px; bottom: 20px; z-index: 4200; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.floating-action { min-width: 48px; height: 48px; padding: 0 15px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg-card); color: var(--text-main); box-shadow: var(--shadow-md); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-weight: 700; transition: transform .2s, border-color .2s, color .2s; }
+.floating-action:hover { transform: translateY(-3px); border-color: var(--primary); color: var(--primary); }
+.floating-theme { width: 48px; padding: 0; }
+.floating-contact { background: var(--primary); color: #fff; border-color: var(--primary); }
+.floating-contact:hover { color: #fff; background: var(--primary-dark); }
+.header-logout { display: inline-flex; gap: 7px; align-items: center; }
+.input-help { color: var(--text-muted); font-size: .74rem; line-height: 1.4; }
+.image-preview { margin-top: 7px; min-height: 76px; border: 1px dashed var(--border); border-radius: 8px; background: var(--bg-page); display: flex; align-items: center; justify-content: center; overflow: hidden; color: var(--text-muted); font-size: .8rem; }
+.image-preview img { display: block; width: 100%; max-height: 230px; object-fit: cover; }
+.image-preview i { margin-right: 6px; color: var(--primary); }
+.location-tools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.map-open-link, .map-detail-link { color: var(--primary); text-decoration: none; font-size: .82rem; font-weight: 700; }
+.property-map { width: 100%; height: 230px; border: 1px solid var(--border); border-radius: 9px; display: block; margin-top: 7px; }
+.map-placeholder { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 76px; padding: 14px; border: 1px dashed var(--border); border-radius: 8px; color: var(--text-muted); background: var(--bg-page); font-size: .8rem; text-align: center; }
+.map-placeholder i { color: var(--primary); }
+.demand-detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+.detail-cover { grid-column: span 2; width: 100%; height: 220px; border-radius: 9px; object-fit: cover; border: 1px solid var(--border); }
+.detail-info-block, .detail-description { padding: 12px; background: var(--bg-page); border: 1px solid var(--border); border-radius: 8px; display: flex; flex-direction: column; gap: 5px; }
+.detail-info-block small, .detail-description small { color: var(--text-muted); text-transform: uppercase; font-size: .68rem; font-weight: 800; }
+.detail-info-block strong { font-size: .88rem; line-height: 1.35; }
+.detail-description p { font-size: .88rem; line-height: 1.55; color: var(--text-main); }
+.empty-mural { grid-column: 1 / -1; padding: 44px; text-align: center; border: 1px dashed var(--border); border-radius: 10px; background: var(--bg-card); }
+.about-page { max-width: 1100px; margin: 0 auto; padding: 64px 24px 84px; }
+.about-hero { padding: 42px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+.about-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: 8px 0 14px; }
+.about-hero p { color: var(--text-muted); max-width: 800px; line-height: 1.7; }
+.about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
+.about-card { padding: 22px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card); }
+.about-card i { color: var(--primary); font-size: 1.35rem; }
+.about-card h2 { font-size: 1.05rem; margin: 13px 0 7px; }
+.about-card p { color: var(--text-muted); font-size: .88rem; line-height: 1.6; }
+.about-story { margin-top: 24px; padding: 28px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card); }
+.about-story h2 { margin-bottom: 10px; }
+.about-story p { color: var(--text-muted); line-height: 1.7; }
+
+@media (max-width: 768px) {
+  .nav-wrapper { display: none !important; position: fixed !important; top: 95px !important; right: 0 !important; left: auto !important; width: min(88vw, 360px) !important; height: calc(100vh - 95px) !important; padding: 18px !important; flex-direction: column !important; align-items: stretch !important; gap: 18px !important; background: var(--bg-card) !important; border-left: 1px solid var(--border) !important; border-bottom: none !important; box-shadow: var(--shadow-md) !important; overflow-y: auto !important; }
+  .nav-wrapper.active { display: flex !important; }
+  .nav-menu { flex-direction: column !important; align-items: stretch !important; gap: 6px !important; width: 100% !important; }
+  .nav-menu li, .nav-menu a { width: 100%; }
+  .nav-menu a { display: flex; padding: 12px; border-radius: 8px; background: var(--bg-page); border: 1px solid var(--border); }
+  .header-buttons { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 9px !important; width: 100% !important; padding-top: 14px; border-top: 1px solid var(--border); }
+  .header-buttons > button, .header-buttons > a, .header-buttons .notification-wrapper { width: 100%; }
+  .header-buttons > button, .header-buttons > a { justify-content: center; text-align: center; }
+  .notification-bell { width: 100%; border-radius: 8px; }
+  .hero-actions { flex-direction: column !important; align-items: stretch !important; }
+  .hero-actions .btn-large { width: 100%; }
+  .demand-detail-grid { grid-template-columns: 1fr; }
+  .detail-cover, .span-2 { grid-column: span 1 !important; }
+  .floating-actions { right: 14px; bottom: 14px; }
+  .floating-contact span { display: none; }
+  .floating-contact { width: 48px; padding: 0; }
+  .about-page { padding: 38px 16px 70px; }
+  .about-hero { padding: 26px 20px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .pending-item-actions { width: 100%; flex-wrap: wrap; }
+}
