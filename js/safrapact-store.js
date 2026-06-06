@@ -12,7 +12,9 @@
         localPublished: "safrapact_publicadas_local",
         notificationsRead: "safrapact_notificacoes_lidas",
         draftPrefix: "safrapact_rascunho_",
-        pendingPrefix: "safrapact_pendentes_"
+        pendingPrefix: "safrapact_pendentes_",
+        deletedIds: "safrapact_exclusoes_local",
+        cacheVersion: "safrapact_cache_version"
     };
 
     const BASE_DEMANDS = [
@@ -28,6 +30,18 @@
 
     const channel = "BroadcastChannel" in window ? new BroadcastChannel("safrapact_eventos") : null;
     const state = { published: [], pollTimer: null, onDemandsChange: new Set(), initialUnreadToastShown: false };
+
+    /*
+     * Migração v8: remove caches dinâmicos antigos quando o Firebase está ativo.
+     * Esses caches eram úteis como contingência, porém podiam fazer uma oferta já
+     * excluída reaparecer no navegador de um prestador quando a leitura remota falhava.
+     */
+    function runStorageMigration() {
+        if (localStorage.getItem(KEYS.cacheVersion) === "8") return;
+        if (databaseURL) localStorage.removeItem(KEYS.localPublished);
+        localStorage.setItem(KEYS.cacheVersion, "8");
+    }
+    runStorageMigration();
 
     function safeParse(value, fallback) { try { return value ? JSON.parse(value) : fallback; } catch (_) { return fallback; } }
     function escapeHtml(value) { return String(value ?? "").replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char])); }
@@ -54,6 +68,10 @@
 
     function getLocalPublished() { return safeParse(localStorage.getItem(KEYS.localPublished), []); }
     function saveLocalPublished(items) { localStorage.setItem(KEYS.localPublished, JSON.stringify(uniqueById(items))); }
+    function getLocalDeletedIds() { return new Set(safeParse(localStorage.getItem(KEYS.deletedIds), []).map(String)); }
+    function saveLocalDeletedIds(ids) { localStorage.setItem(KEYS.deletedIds, JSON.stringify([...new Set([...ids].map(String))])); }
+    function markLocalDeleted(id) { const ids = getLocalDeletedIds(); ids.add(String(id)); saveLocalDeletedIds(ids); }
+    function unmarkLocalDeleted(id) { const ids = getLocalDeletedIds(); ids.delete(String(id)); saveLocalDeletedIds(ids); }
     function getDraftKey(email) { return `${KEYS.draftPrefix}${email || "anonimo"}`; }
     function getPendingKey(email) { return `${KEYS.pendingPrefix}${email || "anonimo"}`; }
     function getDraft(email) { return safeParse(localStorage.getItem(getDraftKey(email)), null); }
@@ -68,13 +86,38 @@
     }
 
     async function getPublishedDemands() {
-        let remote = [];
+        let dynamicDemands = databaseURL ? [] : getLocalPublished();
+        const deletedIds = getLocalDeletedIds();
+        let demandsRemoteLoaded = false;
+
         if (databaseURL) {
-            try { const data = await request("demandas"); remote = data ? Object.values(data) : []; }
-            catch (error) { console.warn("SafraPact: sincronização remota indisponível; usando cache local.", error); }
+            const [demandsResult, deletedResult] = await Promise.allSettled([request("demandas"), request("exclusoes")]);
+
+            if (deletedResult.status === "fulfilled" && deletedResult.value) {
+                Object.keys(deletedResult.value).forEach(id => deletedIds.add(String(id)));
+                saveLocalDeletedIds(deletedIds);
+            }
+
+            if (demandsResult.status === "fulfilled") {
+                dynamicDemands = demandsResult.value ? Object.values(demandsResult.value) : [];
+                demandsRemoteLoaded = true;
+            } else {
+                /*
+                 * Em modo sincronizado não exibimos cache remoto antigo quando o
+                 * Firebase fica indisponível. Isso evita propostas fantasma, como
+                 * uma oferta de Sinop já apagada continuar visível ao prestador.
+                 */
+                dynamicDemands = [];
+                console.warn("SafraPact: leitura remota indisponível; ocultando ofertas dinâmicas em cache para evitar dados excluídos.", demandsResult.reason);
+            }
         }
-        state.published = uniqueById([...BASE_DEMANDS, ...getLocalPublished(), ...remote].filter(item => item.status === "publicada"));
-        saveLocalPublished(state.published.filter(item => !BASE_DEMANDS.some(base => base.id === item.id)));
+
+        state.published = uniqueById([...BASE_DEMANDS, ...dynamicDemands].filter(item => item.status === "publicada" && !deletedIds.has(String(item.id))));
+
+        if (demandsRemoteLoaded || !databaseURL) {
+            saveLocalPublished(dynamicDemands.filter(item => !deletedIds.has(String(item.id)) && !BASE_DEMANDS.some(base => base.id === item.id)));
+        }
+
         return state.published;
     }
 
@@ -94,16 +137,40 @@
             localizacao: payload.localizacao || [payload.cidade, payload.uf].filter(Boolean).join(", "),
             janela: payload.janela || `${formatDate(payload.inicio)} a ${formatDate(payload.fim)}`
         };
+        unmarkLocalDeleted(demand.id);
         saveLocalPublished([...getLocalPublished().filter(item => item.id !== demand.id), demand]);
-        if (databaseURL) await request(`demandas/${demand.id}`, { method: "PUT", body: JSON.stringify(demand) });
+        if (databaseURL) {
+            await request(`demandas/${demand.id}`, { method: "PUT", body: JSON.stringify(demand) });
+            /* Se a mesma oferta estiver sendo republicada após uma exclusão, remove o bloqueio remoto. */
+            try { await request(`exclusoes/${demand.id}`, { method: "DELETE" }); } catch (_) { /* não impede a publicação */ }
+        }
         notifyLocalEvent("demand-published", demand);
         return demand;
     }
 
     async function deletePublishedDemand(id) {
-        saveLocalPublished(getLocalPublished().filter(item => item.id !== id));
-        if (databaseURL) await request(`demandas/${id}`, { method: "DELETE" });
-        notifyLocalEvent("demand-deleted", { id });
+        const normalizedId = String(id);
+        const deletion = { deletedAt: Date.now(), id: normalizedId, ownerEmail: getSession()?.email || "" };
+
+        /* A interface local some imediatamente e o ID fica bloqueado no cache. */
+        markLocalDeleted(normalizedId);
+        saveLocalPublished(getLocalPublished().filter(item => String(item.id) !== normalizedId));
+        state.published = state.published.filter(item => String(item.id) !== normalizedId);
+        notifyLocalEvent("demand-deleted", { id: normalizedId });
+        state.onDemandsChange.forEach(callback => callback(state.published));
+
+        if (!databaseURL) return;
+
+        /*
+         * Gravamos também uma lápide (tombstone) em /exclusoes. Assim navegadores
+         * que ainda possuem cache antigo conseguem reconhecer a remoção, mesmo se
+         * uma versão anterior do site tiver deixado uma cópia local da proposta.
+         */
+        const results = await Promise.allSettled([
+            request(`demandas/${normalizedId}`, { method: "DELETE" }),
+            request(`exclusoes/${normalizedId}`, { method: "PUT", body: JSON.stringify(deletion) })
+        ]);
+        if (results.every(result => result.status === "rejected")) throw new Error("Não foi possível sincronizar a exclusão no Firebase.");
     }
 
     async function savePendingDemand(email, payload) {
